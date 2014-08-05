@@ -17,16 +17,16 @@ function init() {
 	button_detect_confirm.onclick = function () {
 		input_files.style.display = 'block';
 	}	
-	input_file01 = document.querySelector('#file01');
-	input_file02 = document.querySelector('#file02');
-	input_file03 = document.querySelector('#file03');
-	input_file04 = document.querySelector('#file04');
-	input_file05 = document.querySelector('#file05');
-	input_file06 = document.querySelector('#file06');
-	input_file07 = document.querySelector('#file07');
-	input_file08 = document.querySelector('#file08');
-	input_file09 = document.querySelector('#file09');
-	input_file10 = document.querySelector('#file10');
+	input_file01 = document.querySelector('#fieldfile01');
+	input_file02 = document.querySelector('#fieldfile02');
+	input_file03 = document.querySelector('#fieldfile03');
+	input_file04 = document.querySelector('#fieldfile04');
+	input_file05 = document.querySelector('#fieldfile05');
+	input_file06 = document.querySelector('#fieldfile06');
+	input_file07 = document.querySelector('#fieldfile07');
+	input_file08 = document.querySelector('#fieldfile08');
+	input_file09 = document.querySelector('#fieldfile09');
+	input_file10 = document.querySelector('#fieldfile10');
 	button_detect_end = document.querySelector('#detect_end');
 	input_file01.onchange = function () {	input_file02.style.display = 'block';	}
 	input_file02.onchange = function () {	input_file03.style.display = 'block';	}
