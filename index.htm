@@ -2,6 +2,8 @@
 <html lang="ru-RU" manifest="default.appcache">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="js/xdetect.js"></script>
 </head>
 <body>
 	<case id="case01">
@@ -9,80 +11,35 @@
     </case> <!-- #case01 end-->
     
     <case id="case02">
-    	<p>
-        	Введите номер лицевого счёта абонента:
-        </p>
-		<input id="account" name="account" placeholder="Лицевой счёт" type="text"/>
-        <p>
-        	Проверьте корректность введенного ЛС прежде чем нажать OK
-        </p>
-		<button id="detect_confirm" type="submit" class="button">OK</button>        
-    </case> <!-- #case02 end-->
-    
-    <case id="case03">
-    	<p>
-        </p>
-		<input type="file" accept="image/*" capture>
-		<canvas></canvas>
-		<button id="detect_end" type="submit" class="button">Сделать фото</button>        
+
+            <p>
+                Введите номер лицевого счёта абонента:
+            </p>
+            <input id="account" name="account" placeholder="Лицевой счёт" type="text"/>
+            <p>
+                Проверьте корректность введенного ЛС прежде чем нажать OK
+            </p>
+            <button id="detect_confirm" class="button">OK</button>        
+            <p>
+            </p>
+            <fieldset id="input_files" class="hidden">
+                <input id="file01" type="file" accept="image/*" capture>
+                <input id="file02" type="file" accept="image/*" capture>
+                <input id="file03" type="file" accept="image/*" capture>
+                <input id="file04" type="file" accept="image/*" capture>
+                <input id="file05" type="file" accept="image/*" capture>
+                <input id="file06" type="file" accept="image/*" capture>
+                <input id="file07" type="file" accept="image/*" capture>
+                <input id="file08" type="file" accept="image/*" capture>
+                <input id="file09" type="file" accept="image/*" capture>
+                <input id="file10" type="file" accept="image/*" capture>
         
-        <script>
-			var input = document.querySelector('input[type=file]'); // see Example 4
-
-			input.onchange = function () {
-
-			  var file = input.files[0];
-			
-				/*
-			  upload(file);
-			  */
-			  drawOnCanvas(file); 
-			  displayAsImage(file);
-			};
-			
-			function upload(file) {
-			  var form = new FormData(),
-				  xhr = new XMLHttpRequest();
-			
-			  form.append('image', file);
-			  xhr.open('post', 'server.php', true);
-			  xhr.send(form);
-			}
-			
-			function drawOnCanvas(file) {
-				  var reader = new FileReader();
-				
-				  reader.onload = function (e) {
-					var dataURL = e.target.result,
-						c = document.querySelector('canvas'), // see Example 4
-						ctx = c.getContext('2d'),
-						img = new Image();
-				
-					img.onload = function() {
-					  c.width = img.width;
-					  c.height = img.height;
-					  ctx.drawImage(img, 0, 0);
-					};
-				
-					img.src = dataURL;
-				  };
-				
-				  reader.readAsDataURL(file);
-			}
-			
-			function displayAsImage(file) {
-			  var imgURL = URL.createObjectURL(file),
-				  img = document.createElement('img');
-			
-			  img.onload = function() {
-				URL.revokeObjectURL(imgURL);
-			  };
-			
-			  img.src = imgURL;
-			  document.body.appendChild(img);
-			}
-		</script>
-    </case> <!-- #case03 end-->
+                <button id="detect_end" class="button">Сохранить регистрацию</button>        
+            </fieldset>
+        
+        
+        
+    </case> <!-- #case02 end-->
     
     
     
