@@ -30,5 +30,11 @@ background-color: #b25e51;
 	witdh: 100%;
 	margin: 0 auto;
 	border-style: double;
+	padding: 0.7em 2em;
+	font-size: 1.0em;
+	border: 2px solid #c4c4c4; 
+	border-radius: 5px; 
+	-webkit-border-radius: 4px;
+	line-height: 1;
 }
 

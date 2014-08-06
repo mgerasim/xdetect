@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
     <script type="text/javascript" src="js/xdetect.js"></script>
+    <script type="text/javascript" src="js/obj-installation.js"></script>
 </head>
 <body>
 	<div id="case01" class="case">
@@ -24,7 +25,9 @@
             </p>
             <fieldset id="input_files" class="hidden">
                 <div id="fieldfile01">01/10<input id="file01" type="file" accept="image/*" capture></div>
+                
                 <div id="fieldfile02" class="hidden">02/10<input id="file02" type="file" accept="image/*" capture></div>
+                
                 <div id="fieldfile03" class="hidden">03/10<input id="file03" type="file" accept="image/*" capture></div>
                 <div id="fieldfile04" class="hidden">04/10<input id="file04" type="file" accept="image/*" capture></div>
                 <div id="fieldfile05" class="hidden">05/10<input id="file05" type="file" accept="image/*" capture></div>
@@ -32,11 +35,18 @@
                 <div id="fieldfile07" class="hidden" >07/10<input id="file07" type="file" accept="image/*" capture></div>
                 <div id="fieldfile08" class="hidden">08/10<input id="file08" type="file" accept="image/*" capture></div>
                 <div id="fieldfile09" class="hidden">09/10<input id="file09" type="file" accept="image/*" capture></div>
+                
                 <div id="fieldfile10" class="hidden">10/10<input id="file10" type="file" accept="image/*" capture></div>    
+                
                 <button id="detect_end" class="button hidden">Сохранить регистрацию</button>        
             </fieldset>
     </div> <!-- #case02 end-->
     
+    <div id="case03" class="case">
+    	<button id="detect_show" class="button">Выгрузить регистрации</button>
+        <div id="detect_accounts">
+        </div>
+    </div> <!-- #case03 end -->
     
     
 </body>

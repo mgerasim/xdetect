@@ -10,13 +10,99 @@ var input_file07;
 var input_file08;
 var input_file09;
 var input_file10;
+var button_detect_end;
+var input_account; 
+var account;
+var button_show;
+
+var photo01;
+var photo02;
+var photo03;
+var photo04;
+var photo05;
+var photo06;
+var photo07;
+var photo08;
+var photo09;
+var photo10;
+
+function deleteStorageInstallation(e)
+{
+
+	console.log(e);
+	localStorage.removeItem(e.target.id);
+	e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+}
+
+var forceRedraw = function(element){
+
+    if (!element) { return; }
+
+    var n = document.createTextNode(' ');
+    var disp = element.style.display;  // don't worry about previous display style
+
+    element.appendChild(n);
+    element.style.display = 'none';
+
+    setTimeout(function(){
+        element.style.display = disp;
+        n.parentNode.removeChild(n);
+    },20); // you can play with this timeout to make it as short as possible
+}
 
 function init() {		
 	input_files = document.querySelector('#input_files');
 	button_detect_confirm = document.querySelector('#detect_confirm');
-	button_detect_confirm.onclick = function () {
+	button_detect_confirm.onclick = function () {		
+		console.log('button detect confirm');
+		input_account = document.querySelector('#account'); 
+		account = input_account.value;		
+		console.log(account);
+		
 		input_files.style.display = 'block';
 	}	
+	/* Сохранить регистрацию */
+	button_detect_end = document.querySelector('#detect_end');
+	button_detect_end.onclick = function () {
+		console.log('button detect end onclick');				
+		var theInputFile01 = document.querySelector('#file01').files[0];		console.log(theInputFile01);		
+
+		var reader01;		
+		reader01 = new FileReader();
+		reader01.onload = function(e) {
+			photo01 = e.target.result;
+			RunReader02();
+		}
+		reader01.readAsDataURL(theInputFile01);		
+	}
+	/* Показать регистрации */
+	button_detect_show = document.querySelector('#detect_show');
+	button_detect_show.onclick = function () {
+		console.log('button detect show onclick');				
+		var accounts = document.querySelector('#detect_accounts');
+		while (accounts.firstChild)	{
+			accounts.removeChild(accounts.firstChild);
+		}
+		for (var i=0; i < localStorage.length; i++) {
+			var key = localStorage.key(i);
+			var value = localStorage[key];
+			console.log(key);
+			var p = document.createElement('p');
+			p.innerHTML = key;
+				var a = document.createElement('a');
+				a.id=key;
+				a.href="#";
+				a.innerHTML="Удалить";
+				a.onclick = deleteStorageInstallation;
+			p.appendChild(a);			
+			accounts.appendChild(p);
+		}
+	}
+	
+
+
+
+	
 	input_file01 = document.querySelector('#fieldfile01');
 	input_file02 = document.querySelector('#fieldfile02');
 	input_file03 = document.querySelector('#fieldfile03');
@@ -26,19 +112,149 @@ function init() {
 	input_file07 = document.querySelector('#fieldfile07');
 	input_file08 = document.querySelector('#fieldfile08');
 	input_file09 = document.querySelector('#fieldfile09');
-	input_file10 = document.querySelector('#fieldfile10');
-	button_detect_end = document.querySelector('#detect_end');
-	input_file01.onchange = function () {	input_file02.style.display = 'block';	}
-	input_file02.onchange = function () {	input_file03.style.display = 'block';	}
-	input_file03.onchange = function () {	input_file04.style.display = 'block';	}
-	input_file04.onchange = function () {	input_file05.style.display = 'block';	}
-	input_file05.onchange = function () {	input_file06.style.display = 'block';	}
-	input_file06.onchange = function () {	input_file07.style.display = 'block';	}
-	input_file07.onchange = function () {	input_file08.style.display = 'block';	}
-	input_file08.onchange = function () {	input_file09.style.display = 'block';	}
-	input_file09.onchange = function () {	input_file10.style.display = 'block';	}
-	input_file10.onchange = function () {	button_detect_end.style.display = 'block';	}
-	button_detect_end.onclick = function () {		}
+	input_file10 = document.querySelector('#fieldfile10');	
+	
+	file01 = document.querySelector('#file01');
+	file02 = document.querySelector('#file02');
+	file03 = document.querySelector('#file03');
+	file04 = document.querySelector('#file04');
+	file05 = document.querySelector('#file05');
+	file06 = document.querySelector('#file06');
+	file07 = document.querySelector('#file07');
+	file08 = document.querySelector('#file08');
+	file09 = document.querySelector('#file09');
+	file10 = document.querySelector('#file10');
+
+	input_file01.onchange = function () {	input_file02.style.display = 'block'; console.log(file01.files[0].name);}
+	input_file02.onchange = function () {	input_file03.style.display = 'block'; console.log(file02.files[0].name);}
+	input_file03.onchange = function () {	input_file04.style.display = 'block'; console.log(file03.files[0].name);}
+	input_file04.onchange = function () {	input_file05.style.display = 'block'; console.log(file04.files[0].name);}
+	input_file05.onchange = function () {	input_file06.style.display = 'block'; console.log(file05.files[0].name);}
+	input_file06.onchange = function () {	input_file07.style.display = 'block'; console.log(file06.files[0].name);}
+	input_file07.onchange = function () {	input_file08.style.display = 'block'; console.log(file07.files[0].name);}
+	input_file08.onchange = function () {	input_file09.style.display = 'block'; console.log(file08.files[0].name);}
+	input_file09.onchange = function () {	input_file10.style.display = 'block'; console.log(file09.files[0].name);}
+	input_file10.onchange = function () {	button_detect_end.style.display = 'block'; console.log(file10.files[0].name);}
+	
+}
+
+function RunReader10() {	
+		var theInputFile = document.querySelector('#file10').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo10 = e.target.result;
+			RunReaderEnd();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader09() {	
+		var theInputFile = document.querySelector('#file09').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo09 = e.target.result;
+			RunReader10();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader08() {	
+		var theInputFile = document.querySelector('#file08').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo08 = e.target.result;
+			RunReader09();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader07() {	
+		var theInputFile = document.querySelector('#file07').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo07 = e.target.result;
+			RunReader08();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader06() {	
+		var theInputFile = document.querySelector('#file06').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo06 = e.target.result;
+			RunReader07();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader05() {	
+		var theInputFile = document.querySelector('#file05').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo05 = e.target.result;
+			RunReader06();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader04() {	
+		var theInputFile = document.querySelector('#file04').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo04 = e.target.result;
+			RunReader05();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader03() {	
+		var theInputFile = document.querySelector('#file03').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo03 = e.target.result;
+			RunReader04();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReader02() {	
+		var theInputFile = document.querySelector('#file02').files[0];	
+		var reader;		
+		reader = new FileReader();
+		reader.onload = function(e) {
+			photo02 = e.target.result;
+			RunReader03();
+		}
+		reader.readAsDataURL(theInputFile);	
+}
+
+function RunReaderEnd() {
+	
+		var installation = new Installation(account, photo01, photo02, photo03, photo04, photo05, photo06, photo07, photo08, photo09, photo10);		
+		
+		console.log(installation);
+				
+		console.log(JSON.stringify(installation));									
+		
+		SaveInstallation(installation);
+		
+		var a = localStorage.getItem("installation");
+		console.log(a);
+		var aa = JSON.parse(a);
+		console.log(aa);
+}
+
+function SaveInstallation(installation) {
+	localStorage.setItem(installation.account, JSON.stringify(installation));	
 }
     
 window.onload = init;
@@ -49,8 +265,7 @@ window.onload = init;
 			
 			
 			
-			var input = document.querySelector('input[type=file]'); // see Example 4
-
+			var input = document.querySelector('input[type=file]'); 
 			input.onchange = function () {
 
 			  var file = input.files[0];
