@@ -49,6 +49,11 @@ var forceRedraw = function(element){
     },20); // you can play with this timeout to make it as short as possible
 }
 
+function handleInputAccount(e)
+{
+	e.target.value = e.target.value.replace(/\D/g,'');	
+}
+
 function init() {		
 	input_files = document.querySelector('#input_files');
 	button_detect_confirm = document.querySelector('#detect_confirm');
@@ -97,7 +102,9 @@ function init() {
 			accounts.appendChild(p);
 		}
 	}
-	
+	/* Валидация лицевого счёта */
+	input_account = document.querySelector('#account');
+	input_account.oninput = handleInputAccount;
 
 
 
