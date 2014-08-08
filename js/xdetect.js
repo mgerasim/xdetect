@@ -28,7 +28,6 @@ var photo10;
 
 function deleteStorageInstallation(e)
 {
-
 	console.log(e);
 	localStorage.removeItem(e.target.id);
 	e.target.parentNode.parentNode.removeChild(e.target.parentNode);
@@ -255,6 +254,38 @@ function RunReaderEnd() {
 
 function SaveInstallation(installation) {
 	localStorage.setItem(installation.account, JSON.stringify(installation));	
+	UploadInstallation(installation);
+}
+
+function UploadInstallation(installation) {
+	var form = new FormData(),
+	xhr = new XMLHttpRequest();
+		
+	form.append('account', installation.account);
+	form.append('photo01', installation.photo01);
+	form.append('photo02', installation.photo02);
+	form.append('photo03', installation.photo03);
+	form.append('photo04', installation.photo04);
+	form.append('photo05', installation.photo05);
+	form.append('photo06', installation.photo06);
+	form.append('photo07', installation.photo07);
+	form.append('photo08', installation.photo08);
+	form.append('photo09', installation.photo09);
+	form.append('photo10', installation.photo10);
+	form.append('installator', installation.installator);
+	form.append('created_at', installation.created_at);
+	form.append('updated_at', installation.updated_at);
+	xhr.open('post', 'show.php', true);
+	xhr.onload = function(oEvent) {
+    if (xhr.status == 200) {
+		console.log("Uploaded!");
+		console.log(xhr.responseText);
+		console.log(xhr.responseBody);
+	} else {
+		console.log("Error " + oReq.status + " occurred uploading your file.");
+	}
+  	};
+	xhr.send(form);
 }
     
 window.onload = init;
