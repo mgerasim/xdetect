@@ -282,8 +282,10 @@ function RunReaderEnd() {
 }
 
 function SaveInstallation(installation) {
+	/*
 	logger('SaveInstallation');
 	localStorage.setItem(installation.account, JSON.stringify(installation));	
+	*/
 	UploadInstallation(installation);
 }
 
