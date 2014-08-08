@@ -54,11 +54,21 @@ function handleInputAccount(e)
 	e.target.value = e.target.value.replace(/\D/g,'');	
 }
 
+function logger(str)
+{
+	var loggerDiv = document.querySelector("#logger");
+	var p = document.createElement('p');
+	p.innerHTML = str;
+	loggerDiv.appendChild(p);
+}
+
 function init() {		
+	logger('init');
 	input_files = document.querySelector('#input_files');
 	button_detect_confirm = document.querySelector('#detect_confirm');
 	button_detect_confirm.onclick = function () {		
 		console.log('button detect confirm');
+		logger('button detect confirm');
 		input_account = document.querySelector('#account'); 
 		account = input_account.value;		
 		console.log(account);
@@ -69,7 +79,10 @@ function init() {
 	button_detect_end = document.querySelector('#detect_end');
 	button_detect_end.onclick = function () {
 		console.log('button detect end onclick');				
-		var theInputFile01 = document.querySelector('#file01').files[0];		console.log(theInputFile01);		
+		logger('button detect end onclick');				
+		var theInputFile01 = document.querySelector('#file01').files[0];		
+		console.log(theInputFile01);		
+		logger(theInputFile01);		
 
 		var reader01;		
 		reader01 = new FileReader();
@@ -145,6 +158,7 @@ function init() {
 }
 
 function RunReader10() {	
+		logger('RunReader10');		
 		var theInputFile = document.querySelector('#file10').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -156,6 +170,7 @@ function RunReader10() {
 }
 
 function RunReader09() {	
+		logger('RunReader09');
 		var theInputFile = document.querySelector('#file09').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -167,6 +182,7 @@ function RunReader09() {
 }
 
 function RunReader08() {	
+		logger('RunReader08');
 		var theInputFile = document.querySelector('#file08').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -178,6 +194,7 @@ function RunReader08() {
 }
 
 function RunReader07() {	
+		logger('RunReader07');
 		var theInputFile = document.querySelector('#file07').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -189,6 +206,7 @@ function RunReader07() {
 }
 
 function RunReader06() {	
+		logger('RunReader06');
 		var theInputFile = document.querySelector('#file06').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -200,6 +218,7 @@ function RunReader06() {
 }
 
 function RunReader05() {	
+		logger('RunReader05');
 		var theInputFile = document.querySelector('#file05').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -211,6 +230,7 @@ function RunReader05() {
 }
 
 function RunReader04() {	
+		logger('RunReader04');
 		var theInputFile = document.querySelector('#file04').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -222,6 +242,7 @@ function RunReader04() {
 }
 
 function RunReader03() {	
+		logger('RunReader03');
 		var theInputFile = document.querySelector('#file03').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -233,6 +254,7 @@ function RunReader03() {
 }
 
 function RunReader02() {	
+		logger('RunReader02');
 		var theInputFile = document.querySelector('#file02').files[0];	
 		var reader;		
 		reader = new FileReader();
@@ -244,7 +266,7 @@ function RunReader02() {
 }
 
 function RunReaderEnd() {
-	
+		logger('RunReaderEnd');
 		var installation = new Installation(account, photo01, photo02, photo03, photo04, photo05, photo06, photo07, photo08, photo09, photo10);		
 		
 		console.log(installation);
@@ -260,11 +282,13 @@ function RunReaderEnd() {
 }
 
 function SaveInstallation(installation) {
+	logger('SaveInstallation');
 	localStorage.setItem(installation.account, JSON.stringify(installation));	
 	UploadInstallation(installation);
 }
 
 function UploadInstallation(installation) {
+	logger('UploadInstallation');
 	var form = new FormData(),
 	xhr = new XMLHttpRequest();
 		
@@ -282,24 +306,34 @@ function UploadInstallation(installation) {
 	form.append('installator', installation.installator);
 	form.append('created_at', installation.created_at);
 	form.append('updated_at', installation.updated_at);
-	xhr.open('post', 'show.php', true);
+	xhr.open('post', 'http://10.198.1.45/show.php', true);
 	xhr.onload = function(oEvent) {
-    if (xhr.status == 200) {
-		console.log("Uploaded!");
-		console.log(xhr.responseText);
-		console.log(xhr.responseBody);
-	} else {
-		console.log("Error " + oReq.status + " occurred uploading your file.");
-	}
+	logger('xhr.onload');
+		try {
+				if (xhr.status == 200) {			
+					console.log("Uploaded!");
+					logger('Uploaded!');
+					console.log(xhr.responseText);
+					console.log(xhr.responseBody);
+			
+				} else {
+					console.log("Error " + xhr.status + " occurred uploading your file.");
+					logger("Error " + xhr.status + " occurred uploading your file.");
+				}
+			}		
+			catch(err) {
+				console.log(err);
+				logger(err);			
+			}		
   	};
+	xhr.onreadystatechange = function(oEvent) {
+		logger('xhr.onload');
+	}
 	xhr.send(form);
 }
     
 window.onload = init;
 
-			input_files.onclick = function () {
-				alert("F");
-			}
 			
 			
 			
