@@ -1,5 +1,4 @@
 var button_detect_confirm;
-var input_files;
 var input_file01;
 var input_file02;
 var input_file03;
@@ -11,10 +10,10 @@ var input_file08;
 var input_file09;
 var input_file10;
 var button_detect_end;
+var div_detect_end;
 var input_account; 
 var account;
 var button_show;
-
 var photo01;
 var photo02;
 var photo03;
@@ -56,26 +55,31 @@ function handleInputAccount(e)
 
 function logger(str)
 {
-	var loggerDiv = document.querySelector("#logger");
+	console.log(str);
+	var loggerDiv = document.getElementById("logger");
 	var p = document.createElement('p');
-	p.innerHTML = str;
+	p.innerHTML = str;	
 	loggerDiv.appendChild(p);
+	
 }
 
 function init() {		
-	logger('init');
-	input_files = document.querySelector('#input_files');
+	logger	('init1');	
+	console.log('init');
 	button_detect_confirm = document.querySelector('#detect_confirm');
 	button_detect_confirm.onclick = function () {		
 		console.log('button detect confirm');
 		logger('button detect confirm');
-		input_account = document.querySelector('#account'); 
+		input_account = document.getElementById('account'); 
+		logger(input_account);
 		account = input_account.value;		
-		console.log(account);
+		logger(account);
 		
-		input_files.style.display = 'block';
+		var fieldfile01 = document.querySelector('#fieldfile01');
+		fieldfile01.style.display = 'block';
 	}	
 	/* Сохранить регистрацию */
+	div_detect_end = document.querySelector('#div_detect_end');
 	button_detect_end = document.querySelector('#detect_end');
 	button_detect_end.onclick = function () {
 		console.log('button detect end onclick');				
@@ -93,6 +97,7 @@ function init() {
 		reader01.readAsDataURL(theInputFile01);		
 	}
 	/* Показать регистрации */
+	/*
 	button_detect_show = document.querySelector('#detect_show');
 	button_detect_show.onclick = function () {
 		console.log('button detect show onclick');				
@@ -115,6 +120,7 @@ function init() {
 			accounts.appendChild(p);
 		}
 	}
+	*/
 	/* Валидация лицевого счёта */
 	input_account = document.querySelector('#account');
 	input_account.oninput = handleInputAccount;
@@ -153,7 +159,7 @@ function init() {
 	input_file07.onchange = function () {	input_file08.style.display = 'block'; console.log(file07.files[0].name);}
 	input_file08.onchange = function () {	input_file09.style.display = 'block'; console.log(file08.files[0].name);}
 	input_file09.onchange = function () {	input_file10.style.display = 'block'; console.log(file09.files[0].name);}
-	input_file10.onchange = function () {	button_detect_end.style.display = 'block'; console.log(file10.files[0].name);}
+	input_file10.onchange = function () {	div_detect_end.style.display = 'block'; console.log(file10.files[0].name);}
 	
 }
 
@@ -337,21 +343,21 @@ function UploadInstallation(installation) {
 window.onload = init;
 
 			
-			
+			/*
 			
 			var input = document.querySelector('input[type=file]'); 
 			input.onchange = function () {
 
 			  var file = input.files[0];
 			
-				/*
+				
 			  upload(file);
 			  
 			  drawOnCanvas(file); 
 			  displayAsImage(file);
-			  */
+			  
 			};
-			
+			*/
 			function upload(file) {
 			  var form = new FormData(),
 				  xhr = new XMLHttpRequest();
