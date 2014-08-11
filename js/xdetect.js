@@ -1,3 +1,7 @@
+$( document ).on( "mobileinit", function() {
+    $.mobile.loader.prototype.options.disabled = true;
+});
+
 var button_detect_confirm;
 var input_file01;
 var input_file02;
@@ -82,6 +86,21 @@ function init() {
 	div_detect_end = document.querySelector('#div_detect_end');
 	button_detect_end = document.querySelector('#detect_end');
 	button_detect_end.onclick = function () {
+		
+		$("body").addClass('ui-disabled');
+		$.mobile.loading("show",{
+			text: "Cargando",
+			textVisible: true
+		});
+/*
+		$.mobile.loading( "show" );/*.loading( 'show', {
+			text: msgText,
+			textVisible: textVisible,
+			theme: theme,
+			textonly: textonly,
+			html: html
+		});
+		*/
 		console.log('button detect end onclick');				
 		logger('button detect end onclick');				
 		var theInputFile01 = document.querySelector('#file01').files[0];		
@@ -323,6 +342,9 @@ function UploadInstallation(installation) {
 					logger('Uploaded!');
 					console.log(xhr.responseText);
 					console.log(xhr.responseBody);
+
+					$.mobile.loading("hide");
+					$("body").removeClass('ui-disabled');
 			
 				} else {
 					console.log("Error " + xhr.status + " occurred uploading your file.");
