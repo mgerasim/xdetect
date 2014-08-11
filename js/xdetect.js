@@ -81,6 +81,10 @@ function init() {
 		
 		var fieldfile01 = document.querySelector('#fieldfile01');
 		fieldfile01.style.display = 'block';
+		
+		document.getElementById('confirm').style.display = 'none';
+		document.getElementById('confirm_end').style.display = 'block';
+		document.getElementById('confirm_account').innerHTML = account;
 	}	
 	/* Сохранить регистрацию */
 	div_detect_end = document.querySelector('#div_detect_end');
@@ -92,7 +96,10 @@ function init() {
 			text: "Cargando",
 			textVisible: true
 		});
-/*
+		
+
+//		input_account.style.display = 'none';
+		/*
 		$.mobile.loading( "show" );/*.loading( 'show', {
 			text: msgText,
 			textVisible: textVisible,
@@ -143,10 +150,6 @@ function init() {
 	/* Валидация лицевого счёта */
 	input_account = document.querySelector('#account');
 	input_account.oninput = handleInputAccount;
-
-
-
-	
 	input_file01 = document.querySelector('#fieldfile01');
 	input_file02 = document.querySelector('#fieldfile02');
 	input_file03 = document.querySelector('#fieldfile03');
